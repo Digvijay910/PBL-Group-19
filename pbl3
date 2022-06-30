@@ -1,0 +1,28 @@
+#importing required libraries
+import cv2
+import numpy as np
+
+#path of the image
+path=r"C:\Users\digvi\OneDrive\Desktop\star.jpg"
+#reading the image
+img_rgb=cv2.imread(path)
+
+#converting the image into black and white
+gray=cv2.cvtColor(img_rgb,cv2.COLOR_BGR2GRAY)
+#finding the maximum intensity pixel
+(minVal,maxVal,minLoc,maxLoc)=cv2.minMaxLoc(gray)
+#to print the co-ordinates of brightest pixel
+print('The co-ordinates of the brightest star are',maxLoc)
+
+#drawing the circle around brightest intensity pixel
+r=40
+color=(0,255,0)
+t=10
+cv2.circle(img_rgb,maxLoc,r,color,t)
+cv2.namedWindow("image",cv2.WINDOW_NORMAL)
+cv2.resizeWindow("image",600,700)
+
+
+#to display the output image
+cv2.imshow("image",img_rgb)
+
